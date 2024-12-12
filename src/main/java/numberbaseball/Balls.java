@@ -3,28 +3,36 @@ package numberbaseball;
 import java.util.List;
 
 public class Balls {
-    List<Ball> values;
+    List<Ball> values = new ArrayList<>();
 
     public Balls(List<Ball> values) {
         this.values = values;
     }
 
-    public BallResult ballsMatchStatus(Ball otherBall) {
-
-        BallResult result;
-        for (Ball value : values) {
-            result = otherBall.matchStatus(value);
-            if (result.equals(BallResult.STRIKE)) {
-                //return "STRIKE";
-                return BallResult.STRIKE;
+    public BallResult ballsMatchStatus(Ball otherBall) { 
+        // BallResult result;
+        // for (Ball value : values) {
+        //     result = otherBall.matchStatus(value);
+        //     if (result.equals(BallResult.STRIKE)) {
+        //         //return "STRIKE";
+        //         return BallResult.STRIKE;
+        //     }
+        //     if (result.equals(BallResult.BALL)) {
+        //         //return "BALL";
+        //         return BallResult.BALL;
+        //     }
+        // }
+        // //return "NOTHING";
+        // return BallResult.NOTHING;
+        
+         for (Ball value : values) {
+            BallResult ballResult = value.matchStatus(otherBall);
+                if(!(ballResult != BallResult.Nothing)){
+                return ballResult;
+                }
+            return BallResult.Nothing;
             }
-            if (result.equals(BallResult.BALL)) {
-                //return "BALL";
-                return BallResult.BALL;
-            }
-        }
-        //return "NOTHING";
-        return BallResult.NOTHING;
+        
             /*
             if(value.position == otherBall.position &&
             value.number == otherBall.number){
